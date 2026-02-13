@@ -12,7 +12,11 @@ const client = new Client({
     cdn: config.oldcord.cdn ?? config.oldcord.baseURL,
     mediaProxy: config.oldcord.mediaProxy ?? config.oldcord.baseURL,
   },
-  intents: [GatewayIntentBits.MessageContent],
+  intents: [
+    GatewayIntentBits.Guilds,
+    GatewayIntentBits.GuildMessages,
+    GatewayIntentBits.MessageContent,
+  ],
 });
 
 client.once(Events.ClientReady, (readyClient) => {
