@@ -1,14 +1,16 @@
 import { Client, EmbedBuilder, Events, GatewayIntentBits } from "discord.js";
 
-import config from "../config.json" with { type: "json" };
+import configData from "../config.json" with { type: "json" };
+import { type Config } from "./types/index.js";
+const config = configData as Config;
 
 const prefix = "oldcord!";
 
 const client = new Client({
   rest: {
     api: `${config.oldcord.baseURL}/api`,
-    cdn: config.oldcord.cdn ? config.oldcord.cdn : config.oldcord.baseURL,
-    mediaProxy: config.oldcord.mediaProxy ? config.oldcord.mediaProxy : config.oldcord.baseURL,
+    cdn: config.oldcord.cdn ?? config.oldcord.baseURL,
+    mediaProxy: config.oldcord.mediaProxy ?? config.oldcord.baseURL,
   },
   intents: [GatewayIntentBits.MessageContent],
 });
